@@ -40,9 +40,14 @@ jobs:
         mv /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
         chmod +x /usr/local/bin/chromedriver
 
+    - name: Set Chrome options for headless mode
+      env:
+        DISPLAY: :99
+      run: |
+        Xvfb :99 -ac &
+
     - name: Verify ChromeDriver version
       run: chromedriver --version
 
     - name: Run Selenium tests
-      run: |
-        python test_todomvc.py
+      run: python test_todomvc.py
