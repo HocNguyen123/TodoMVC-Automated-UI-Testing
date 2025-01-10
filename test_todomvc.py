@@ -6,8 +6,15 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 import time
 
-# Initialize the Chrome driver
-driver = webdriver.Chrome()
+# Configure Chrome options for headless mode
+options = webdriver.ChromeOptions()
+options.add_argument("--headless")
+options.add_argument("--disable-gpu")
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
+
+# Initialize the Chrome driver with options
+driver = webdriver.Chrome(options=options)
 wait = WebDriverWait(driver, 10)
 
 # Open the TodoMVC React demo
